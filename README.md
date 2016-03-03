@@ -6,6 +6,7 @@ It was built for Australian postcodes but should work anywhere.
 
 ## Usage
 `postcodenextdoor`
+
 `postcodenextdoor -i [input geojson] -o [output json]`
 
 ## Input
@@ -26,4 +27,5 @@ Well-formed geojson is expected, but actually we just jump to `features` inside 
 Ideally this tool would do all the stuff above for you. The GeoJSON is too big to be Git(hub) friendly so would need to be pulled down as ESRI and converted in all likelihood.
 
 Wishlist if you'd like to PR:
+
 1. Mapshaper integration
