@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/joahua/postcodenextdoor/issues"
   },
-  "homepage": "https://github.com/joahua/postcodenextdoor#readme"
+  "homepage": "https://github.com/joahua/postcodenextdoor#readme",
+  "dependencies": {
+    "turf": "^2.0.2"
+  }
 }
