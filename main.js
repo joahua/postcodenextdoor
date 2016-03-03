@@ -1,7 +1,7 @@
 /* jshint node: true */
 'use strict';
 
-var turf = require('turf');
+var intersect = require('turf-intersect');
 var postcodes = require('./postcodes');
 
 var adjacentpostcodes = {};
@@ -23,7 +23,7 @@ shapes.map(function(item) {
 });
 
 function compareIntersection(source, candidate) {
-  return !!turf.intersect(source, candidate) &&
+  return !!intersect(source, candidate) &&
          getPC(source) !== getPC(candidate);
 }
 

@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/joahua/postcodenextdoor#readme",
   "dependencies": {
-    "turf": "^2.0.2"
+    "turf-intersect": "^1.4.2"
   }
 }
