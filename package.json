@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/joahua/postcodenextdoor#readme",
   "dependencies": {
+    "minimist": "^1.2.0",
     "progress": "^1.1.8",
     "turf-intersect": "^1.4.2"
   }

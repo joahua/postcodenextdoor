@@ -2,17 +2,23 @@
 'use strict';
 
 var fs = require('fs');
-
 var intersect = require('turf-intersect');
-var postcodes = JSON.parse(fs.readFileSync('postcodes.geojson', 'utf8'));
+var argv = require('minimist')(process.argv.slice(2));
+
+var infile = argv.i || 'postcodes.geojson';
+var outfile = argv.o || 'adjacentpostcodes.json';
+
+var postcodes = JSON.parse(fs.readFileSync(infile, 'utf8'));
 var ProgressBar = require('progress');
 
 console.log('Postcodes loaded');
 
 var adjacentpostcodes = {};
 
-var shapes = postcodes.features.slice(0,50);
-var bar = new ProgressBar('[:bar :percent] Elapsed: :elapseds Remaining: :etas', { total: shapes.length });
+var shapes = postcodes.features.slice(0,10);
+var bar = new ProgressBar('[:bar :percent] Elapsed: :elapseds Remaining: :etas', {
+  total: shapes.length
+});
 
 shapes.map(function(item) {
   var postcode = getPC(item);
@@ -27,9 +33,9 @@ shapes.map(function(item) {
   bar.tick();
 });
 
-fs.writeFile('adjacentpostcodes.json', JSON.stringify(adjacentpostcodes), function(err) {
+fs.writeFile(outfile, JSON.stringify(adjacentpostcodes), function(err) {
   if (err) return console.error('An error occured writing the results file');
-  console.log('Output saved as adjacentpostcodes.json');
+  console.log(`Output saved as ${outfile}`);
 });
 
 function compareIntersection(source, candidate) {
