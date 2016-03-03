@@ -11,12 +11,13 @@
     "url": "git+https://github.com/joahua/postcodenextdoor.git"
   },
   "author": "",
-  "license": "",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/joahua/postcodenextdoor/issues"
   },
   "homepage": "https://github.com/joahua/postcodenextdoor#readme",
   "dependencies": {
+    "progress": "^1.1.8",
     "turf-intersect": "^1.4.2"
   }
 }
