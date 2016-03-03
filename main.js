@@ -1,8 +1,10 @@
 /* jshint node: true */
 'use strict';
 
+var fs = require('fs');
+
 var intersect = require('turf-intersect');
-var postcodes = require('./postcodes');
+var postcodes = JSON.parse(fs.readFileSync('postcodes.geojson', 'utf8'));
 
 var adjacentpostcodes = {};
 
@@ -10,9 +12,7 @@ var shapes = postcodes.features.slice(0,100);
 shapes.map(function(item) {
   var postcode = getPC(item);
   var adjacent = shapes.filter(function(candidate) {
-    // this whole thing is very inefficient 
-    // minor optimisation vs iterating all shapes in Oz… do this with same 'thousand' prefix?
-    // .slice(0,2) is probably less safe from a data perspective
+    // minor optimisation vs iterating all shapes in Oz
     return postcode[0] === getPC(candidate)[0];
   }).filter(function(candidate) {
     return compareIntersection(item, candidate);
