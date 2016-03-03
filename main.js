@@ -4,7 +4,11 @@
 var fs = require('fs');
 
 var intersect = require('turf-intersect');
-var postcodes = JSON.parse(fs.readFileSync('postcodes.geojson', 'utf8'));
+var postcodes = JSON.parse(fs.readFileSync('postcodes.geojson', 'utf8', function(err) {
+  if (err) return console.error('Postcodes failed to load. Please check postcodes.geojson is in the application root.');
+}));
+
+console.log('Postcodes loaded');
 
 var adjacentpostcodes = {};
 
@@ -19,8 +23,12 @@ shapes.map(function(item) {
   }).map(getPC);
 
   adjacentpostcodes[postcode] = adjacent;
-  console.log(adjacent);
 });
+
+fs.writeFile('adjacentpostcodes.json', JSON.stringify(adjacentpostcodes), function(err) {
+  if (err) return console.error('An error occured writing the results file');
+  console.log('Output saved as adjacentpostcodes.json');
+})
 
 function compareIntersection(source, candidate) {
   return !!intersect(source, candidate) &&
