@@ -24,7 +24,8 @@ shapes.map(function(item) {
   var postcode = getPC(item);
   var adjacent = shapes.filter(function(candidate) {
     // minor optimisation vs iterating all shapes in Oz
-    return postcode[0] === getPC(candidate)[0];
+    var candidate = getPC(candidate);
+    return postcode !== candidate && postcode[0] === candidate[0];
   }).filter(function(candidate) {
     return compareIntersection(item, candidate);
   }).map(getPC);
